@@ -22,6 +22,10 @@
 			data-text="{% if post.tweet-text %}{{ post.tweet-text }}{% else %}{{ post.title }}{% endif %}">
                         Tweet
                 </a>
+                <div class="fb-like" data-href="{{ site.url }}{{ post.url }}"
+                     data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
+
+                </div>
 		<span class="entry-tags">
 			{% for tag in post.tags %}
 			<a href="/tag#{{ tag }}" rel="tag">{{ tag }}</a>
