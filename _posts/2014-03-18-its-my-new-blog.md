@@ -2,7 +2,7 @@
 layout: post
 title: Its my new Blog
 author: Oyewale
-feature-image: everyone.jpg
+feature-image: io.jpg
 tags:
 - personal
 - new-year
