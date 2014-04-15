@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Exciting weekend at Jim's and another Monday at work
-author: me
+author: Oyewale
+feature-image: everyone.jpg
 tags:
 - personal
 - work
