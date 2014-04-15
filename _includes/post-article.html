@@ -7,13 +7,21 @@
 		<h1 itemprop="name" class="entry-title">
 		<a href="{{ site.url }}{{ post.url }}" rel="bookmark">{{ post.title }}</a>
 		</h1>
+        <hr>
+        <p>
 		<abbr class="published updated" title="{{ post.date | date_to_xmlschema }}">
 			{{ post.date | date_to_string }}
 		</abbr>
 		<address class="vcard author"><span class="fn">{{ post.author }}</span></address>
+        </p>
+        <hr>
 	</header>
 	
-	<section class="entry-content">{{ content }}</section>
+	<section class="entry-content">
+        <img src="http://placehold.it/900x300" class="img-responsive">
+        <hr>
+        {{ content }}
+    </section>
 
 	<footer class="end-of-post">
                 <g:plusone size="medium" href="{{ site.url }}{{ post.url }}"></g:plusone>
