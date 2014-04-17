@@ -4,18 +4,22 @@
 
 <article itemscope itemtype="http://schema.org/BlogPosting" class="post hentry">
 	<header>
-		<h1 itemprop="name" class="entry-title">
-		<a href="{{ site.url }}{{ post.url }}" rel="bookmark">{{ post.title }}</a>
+		<h1 class="entry-title">
+		<a href="{{ site.url }}{{ post.url }}" rel="bookmark"><span itemprop="name">{{ post.title }}</span></a>
 		</h1>
         <hr>
         <p>
-		<abbr class="published updated" title="{{ post.date | date_to_xmlschema }}">
+		<abbr itemprop="datePublished" content="{{ post.date | date_to_string }}" class="published updated" title="{{ post.date | date_to_xmlschema }}">
 			{{ post.date | date_to_string }}
 		</abbr>
 		<address class="vcard author">
             <span class="fn">
                 <a href="https://plus.google.com/101522065855804710234?rel=author">
-                    {{ post.author }}
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span itemprop="name">
+                            {{ post.author }}
+                        </span>
+                    </span>
                 </a>
             </span>
         </address>
@@ -23,8 +27,8 @@
         <hr>
 	</header>
 	
-	<section class="entry-content">
-        <img src="/images/{{ post.feature-image }}" class="img-responsive">
+	<section itemprop="articleBody" class="entry-content">
+        <img itemprop="image" src="/images/{{ post.feature-image }}" class="img-responsive">
         <hr>
         {{ content }}
     </section>
@@ -47,4 +51,6 @@
 		</span>
 	</footer>
 </article>
+
+<meta itemprop="url" content="{{ site.url }}{{ post.url }}">
 
