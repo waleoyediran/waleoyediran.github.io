@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Its my new Blog
-author: Oyewale
+author: Oyewale Oyediran
 feature-image: io.jpg
 tags:
 - personal
