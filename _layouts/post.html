@@ -3,8 +3,7 @@ layout: default
 ---
 {% assign post = page %}
 <div class="hfeed">
-    {% include post-article.html %}
-    {% include disqus.html %}
+    {% include post-article.html %}    
 </div>
 
 
@@ -20,3 +19,5 @@ layout: default
     <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/101522065855804710234" data-rel="author"></div> -->
 </aside>
 {% endif %}
+
+{% include disqus.html %}
