@@ -9,7 +9,10 @@ tags:
 - sendmail
 - unix
 - php
+- appengine
+- web
 ---
+
 
 So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin [mail()] function and perhaps AppEngine's [Sendmail function]), you might find yourself needing to use the Unix sendmail function.
 
@@ -29,7 +32,9 @@ To modify the default configuration:
 ```
 
 
+
 Now your PHP mail() function and other services that depend on Sendmail should be firing now
+
 
 
 Additionally, you might want to tail the log file to monitor sendmail functions. 
@@ -39,7 +44,13 @@ Additionally, you might want to tail the log file to monitor sendmail functions.
 ```
 
 
-** Oyewale **
+
+---
+So I hope you have a smoother devlopment experience with mails from your local machine.
+
+
+** ..with love from Oyewale. **
+
 
 [Sendmail function]:https://developers.google.com/appengine/docs/python/mail/functions#send_mail
 [mail()]:http://www.php.net/manual/en/function.mail.php
