@@ -1,12 +1,24 @@
-title: Oyewale
-#url: http://www.mydomain.com
+# Dependencies
+markdown:         redcarpet
+pygments:         true
 
-markdown: rdiscount
-pygments: true
-permalink: /:year/:month/:day/:title
+# Permalinks
+permalink:        pretty
 
-lsi: true
-paginate: 20
+# Setup
+title:            Oyewale
+tagline:          'Ill just write what I love'
+description:      'No description'
+url:              http://waleoyediran.github.io
 
-exclude:
-- CNAME
+author:
+  name:           'Oyewale Oyediran'
+  url:            https://twitter.com/waleoyediran
+
+paginate:         5
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/waleoyediran/hyde

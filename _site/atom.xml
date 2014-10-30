@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Oyewale</title>
+ <link href="/atom.xml" rel="self"/>
+ <link href="/"/>
+ <updated>2014-10-30T18:03:47+01:00</updated>
+ <id></id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Enabling SendMail on Ubuntu</title>
+   <link href="/2014/06/10/enabling-sendmail-on-ubuntu"/>
+   <updated>2014-06-10T00:00:00+01:00</updated>
+   <id>/2014/06/10/enabling-sendmail-on-ubuntu</id>
+   <content type="html">&lt;p&gt;So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin &lt;a href=&quot;http://www.php.net/manual/en/function.mail.php&quot;&gt;mail()&lt;/a&gt; function and perhaps AppEngine's &lt;a href=&quot;https://developers.google.com/appengine/docs/python/mail/functions#send_mail&quot;&gt;Sendmail function&lt;/a&gt;), you might find yourself needing to use the Unix sendmail function.&lt;/p&gt;
+
+&lt;h2&gt;To Install SendMail on Ubuntu, just run the command&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;# sudo apt-get install sendmail
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;To modify the default configuration:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;# sendmailconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now your PHP mail() function and other services that depend on Sendmail should be firing now&lt;/p&gt;
+
+&lt;p&gt;Additionally, you might want to tail the log file to monitor sendmail functions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;# tail -f /var/log/maillog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;So I hope you have a smoother devlopment experience with mails from your local machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; ..with love from Oyewale. &lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Exciting weekend at Jim's and another Monday at work</title>
+   <link href="/2014/04/14/exciting-weekend-at-jims-and-another-monday"/>
+   <updated>2014-04-14T00:00:00+01:00</updated>
+   <id>/2014/04/14/exciting-weekend-at-jims-and-another-monday</id>
+   <content type="html">&lt;p&gt;The weekend breezed out with a great Sunday afternoon spent with fellow Konga developers with our VP (Engineering).
+He and his awesome family hosted us at his plush flat in Ikoyi. I got to play FIFA 14 on XBox with Maleek (his son)
+and other devs. Great time diving and swimming in the pool too with the Lagoon in the background.&lt;/p&gt;
+
+&lt;p&gt;Monday doesn't feel like a workday for me. I so feel out of sync with work that I spent time writing this post.. :D
+I'd probably be better of spending the day on Youtube.&lt;/p&gt;
+
+&lt;p&gt;I hope the week comes out good. Writing more clean codes, even though no one sees how beautiful your code is. I'm sure
+whoever maintains my code will have a very low WTF rate.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Its my new Blog</title>
+   <link href="/2014/03/18/its-my-new-blog"/>
+   <updated>2014-03-18T00:00:00+01:00</updated>
+   <id>/2014/03/18/its-my-new-blog</id>
+   <content type="html">&lt;p&gt;I really want to write a lot this year. I want to start one way or the other&lt;/p&gt;
+
+&lt;p&gt;So help me God&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
