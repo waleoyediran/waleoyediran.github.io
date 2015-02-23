@@ -7,8 +7,8 @@ permalink:        pretty
 
 # Setup
 title:            Oyewale
-tagline:          'Ill just write what I love'
-description:      'No description'
+tagline:          'Code Ninja'
+description:      'For the love of Software'
 url:              http://waleoyediran.github.io
 
 author:
@@ -21,4 +21,4 @@ paginate:         5
 version:          1.0.0
 
 github:
-  repo:           https://github.com/waleoyediran/hyde
+  repo:           https://github.com/waleoyediran/waleoyediran.github.io/
