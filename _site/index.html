@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/public/css/hyde.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
+
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
                                  <link rel="shortcut icon" href="/public/favicon.ico">
@@ -34,10 +35,10 @@
     <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <g:person href="https://plus.google.com/{101522065855804710234}" data-rel="author"></g:person>
+      
+      <div class="g-person" data-href="https://plus.google.com/{101522065855804710234}"></div>
       <h1>Oyewale</h1>
-      <p class="lead"></p>
+      <p class="lead">No description</p>
     </div>
 
     <ul class="sidebar-nav">
@@ -56,7 +57,7 @@
         
           
             <li class="sidebar-nav-item">
-              <a href="/about.html">About</a>
+              <a href="/about/">About</a>
             </li>
           
         
@@ -76,12 +77,12 @@
         
       
 
-      <li class="sidebar-nav-item"><a href="/archive/v.zip">Download</a></li>
-      <li class="sidebar-nav-item"><a href="">GitHub project</a></li>
-      <li class="sidebar-nav-item">Currently v</li>
+      <li class="sidebar-nav-item"><a href="https://github.com/waleoyediran/hyde/archive/v1.0.0.zip">Download</a></li>
+      <li class="sidebar-nav-item"><a href="https://github.com/waleoyediran/hyde">GitHub project</a></li>
+      <li class="sidebar-nav-item">Currently v1.0.0</li>
     </ul>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2015. All rights reserved.</p>
   </div>
 </div>
 
@@ -91,43 +92,37 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2014/06/10/enabling-sendmail-on-ubuntu">
+      <a href="/2014/06/10/enabling-sendmail-on-ubuntu/">
         Enabling SendMail on Ubuntu
       </a>
     </h1>
 
     <span class="post-date">10 Jun 2014</span>
 
-    <p>So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin <a href="http://www.php.net/manual/en/function.mail.php">mail()</a> function and perhaps AppEngine's <a href="https://developers.google.com/appengine/docs/python/mail/functions#send_mail">Sendmail function</a>), you might find yourself needing to use the Unix sendmail function.</p>
+    <p>So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin <a href="http://www.php.net/manual/en/function.mail.php">mail()</a> function and perhaps AppEngine&#39;s <a href="https://developers.google.com/appengine/docs/python/mail/functions#send_mail">Sendmail function</a>), you might find yourself needing to use the Unix sendmail function.</p>
 
 <h2>To Install SendMail on Ubuntu, just run the command</h2>
-
-<pre><code class="sh"># sudo apt-get install sendmail
-</code></pre>
-
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sudo apt-get install sendmail</span>
+</code></pre></div>
 <h2>To modify the default configuration:</h2>
-
-<pre><code class="sh"># sendmailconfig
-</code></pre>
-
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sendmailconfig</span>
+</code></pre></div>
 <p>Now your PHP mail() function and other services that depend on Sendmail should be firing now</p>
 
-<p>Additionally, you might want to tail the log file to monitor sendmail functions.</p>
-
-<pre><code class="sh"># tail -f /var/log/maillog
-</code></pre>
-
-<hr />
+<p>Additionally, you might want to tail the log file to monitor sendmail functions. </p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># tail -f /var/log/maillog</span>
+</code></pre></div>
+<hr>
 
 <p>So I hope you have a smoother devlopment experience with mails from your local machine.</p>
 
-<p><strong> ..with love from Oyewale. </strong></p>
+<p>** ..with love from Oyewale. **</p>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2014/04/14/exciting-weekend-at-jims-and-another-monday">
+      <a href="/2014/04/14/exciting-weekend-at-jims-and-another-monday/">
         Exciting weekend at Jim's and another Monday at work
       </a>
     </h1>
@@ -138,17 +133,17 @@
 He and his awesome family hosted us at his plush flat in Ikoyi. I got to play FIFA 14 on XBox with Maleek (his son)
 and other devs. Great time diving and swimming in the pool too with the Lagoon in the background.</p>
 
-<p>Monday doesn't feel like a workday for me. I so feel out of sync with work that I spent time writing this post.. :D
-I'd probably be better of spending the day on Youtube.</p>
+<p>Monday doesn&#39;t feel like a workday for me. I so feel out of sync with work that I spent time writing this post.. :D
+I&#39;d probably be better of spending the day on Youtube.</p>
 
-<p>I hope the week comes out good. Writing more clean codes, even though no one sees how beautiful your code is. I'm sure
+<p>I hope the week comes out good. Writing more clean codes, even though no one sees how beautiful your code is. I&#39;m sure
 whoever maintains my code will have a very low WTF rate.</p>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2014/03/18/its-my-new-blog">
+      <a href="/2014/03/18/its-my-new-blog/">
         Its my new Blog
       </a>
     </h1>
@@ -173,5 +168,6 @@ whoever maintains my code will have a very low WTF rate.</p>
 </div>
     </div>
 
+    
   </body>
 </html>
