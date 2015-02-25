@@ -2,11 +2,43 @@
 layout: default
 ---
 
-<div class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
-  {{ content }}
-</div>
+<article itemscope itemtype="http://schema.org/BlogPosting" class="post hentry">
+  
+  <div class="post">
+    <header>
+      <h1 class="post-title">{{ page.title }}</h1>
+    </header>
+
+    <span class="post-date">{{ page.date | date_to_string }}</span>
+    
+    <section itemprop="articleBody">
+      {{ content }}
+    </section>
+  </div>
+  
+
+  <footer class="end-of-post" style="padding-top: 20px;">
+                <g:plusone size="medium" href="{{ site.url }}{{ post.url }}"></g:plusone>
+                <a href="https://twitter.com/share" class="twitter-share-button"
+      data-url="{{ site.url }}{{ post.url }}"
+      data-text="{% if post.tweet-text %}{{ post.tweet-text }}{% else %}{{ post.title }}{% endif %}">
+                        Tweet
+                </a>
+                <div class="fb-like" data-href="{{ site.url }}{{ post.url }}"
+                     data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
+
+                </div>
+                <span class="entry-tags" style="padding-top: 20px; padding-bottom: 20px;">
+      {% for tag in post.tags %}
+      <a href="/tag#{{ tag }}" rel="tag"><span class="label label-primary">{{ tag }}</span></a>
+      {% endfor %}
+    </span>
+  </footer>
+</article>
+
+<meta itemprop="url" content="{{ site.url }}{{ post.url }}">
+
+{% include disqus.html %}
 
 <div class="related">
   <h2>Related Posts</h2>
