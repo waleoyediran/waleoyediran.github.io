@@ -15,6 +15,6 @@ He spends his free time, researching on Augmented Reality, Computer Vision and h
 
 ##### Connect with me
 
-* [Linkedin](http://jekyllrb.com)
+* [Linkedin](http://ng.linkedin.com/in/waleoyediran)
 * [Twitter](http://twitter.com/waleoyediran)
-* [Google+](http://sublimetext.org)
+* [Google+](http://google.com/+OyewaleOyediran)
