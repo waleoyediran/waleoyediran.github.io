@@ -4,27 +4,17 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  Oyewale Oyediran works as a Software Engineer at Konga (Nigeria's Largest Online Marketplace)
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Asides working at Konga, he has worked on numerous projects, including [Imaging](http://image.ng). He freelances as an Android Consultant and Enterprise Web developer.
 
-There are currently two themes built on Poole:
+He spends his free time, researching on Augmented Reality, Computer Vision and hacking the Android Source.
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+![placeholder](/images/io.jpg "IO")
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+##### Connect with me
 
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.org), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+* [Linkedin](http://jekyllrb.com)
+* [Twitter](http://twitter.com/waleoyediran)
+* [Google+](http://sublimetext.org)

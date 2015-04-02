@@ -6,14 +6,14 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
    <meta name="Author" content="Oyediran Oyewale">
-  <meta name="description" content="Home - Software Developer | Tech Enthusiast">
+  <meta name="description" content="Android SQLite DAO Design">
 
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
   <title>
     
-      Home &middot; Oyewale
+      Android SQLite DAO Design &middot; Oyewale
     
   </title>
 
@@ -47,7 +47,7 @@
     </div>
 
     <ul class="sidebar-nav" style="width: 50%; margin-left: auto; margin-right: auto; text-align: center;">
-      <li class="sidebar-nav-item active" >
+      <li class="sidebar-nav-item" >
         <a href="/">Home</a>
       </li>
 
@@ -113,18 +113,17 @@
 
 
     <div class="content container">
-      <div class="posts">
+      <article itemscope itemtype="http://schema.org/BlogPosting" class="post hentry">
   
   <div class="post">
-    <h1 class="post-title">
-      <a href="/2015/04/02/android-sqlite-dao-design/">
-        Android SQLite DAO Design
-      </a>
-    </h1>
+    <header>
+      <h1 class="post-title">Android SQLite DAO Design</h1>
+    </header>
 
     <span class="post-date">02 Apr 2015</span>
-
-    <p>In this post, i will be describing a pattern of designing a good SQLite data-access layer for Android.</p>
+    
+    <section itemprop="articleBody">
+      <p>In this post, i will be describing a pattern of designing a good SQLite data-access layer for Android.</p>
 
 <p>When your application needs to offer complex data to other applications, the appriopriate approach is to use <a href="http://developer.android.com/guide/topics/providers/content-provider-creating.html">Content Providers</a>. But many simple applications do not need to copy data to other applications. After using various approaches to data-access design over the years, I have been highly influenced by the approach used by the <a href="https://github.com/ushahidi/Ushahidi_Android">Ushahidi Android</a> client.</p>
 
@@ -417,89 +416,79 @@ The pattern aslo encourages having one static handle on the database  which coul
 
 <p>Much of the code here is adapted from the Ushahidi Android Client</p>
 
+    </section>
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/06/10/enabling-sendmail-on-ubuntu/">
-        Enabling SendMail on Ubuntu
-      </a>
-    </h1>
 
-    <span class="post-date">10 Jun 2014</span>
+  <footer class="end-of-post" style="padding-top: 20px;">
+                <g:plusone size="medium" href="http://waleoyediran.github.io"></g:plusone>
+                <a href="https://twitter.com/share" class="twitter-share-button"
+      data-url="http://waleoyediran.github.io"
+      data-text="">
+                        Tweet
+                </a>
+                <div class="fb-like" data-href="http://waleoyediran.github.io"
+                     data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
 
-    <p>So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin <a href="http://www.php.net/manual/en/function.mail.php">mail()</a> function and perhaps AppEngine&#39;s <a href="https://developers.google.com/appengine/docs/python/mail/functions#send_mail">Sendmail function</a>), you might find yourself needing to use the Unix sendmail function.</p>
+                </div>
+                <span class="entry-tags" style="padding-top: 20px; padding-bottom: 20px;">
+      
+    </span>
+  </footer>
+</article>
 
-<h2>To Install SendMail on Ubuntu, just run the command</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sudo apt-get install sendmail</span>
-</code></pre></div>
-<h2>To modify the default configuration:</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sendmailconfig</span>
-</code></pre></div>
-<p>Now your PHP mail() function and other services that depend on Sendmail should be firing now</p>
+<meta itemprop="url" content="http://waleoyediran.github.io">
 
-<p>Additionally, you might want to tail the log file to monitor sendmail functions. </p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># tail -f /var/log/maillog</span>
-</code></pre></div>
-<hr>
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'oyewalesblog'; // required: replace example with your forum shortname
 
-<p>So I hope you have a smoother devlopment experience with mails from your local machine.</p>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<p><img src="/images/tux-mail-1ty.gif" alt="placeholder" title="Tux"></p>
 
-<p>** ..with love from Oyewale. **</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/04/14/exciting-weekend-at-jims-and-another-monday/">
-        Exciting weekend at Jim's and another Monday at work
-      </a>
-    </h1>
-
-    <span class="post-date">14 Apr 2014</span>
-
-    <p>The weekend breezed out with a great Sunday afternoon spent with fellow Konga developers with our VP (Engineering).
-He and his awesome family hosted us at his plush flat in Ikoyi. I got to play FIFA 14 on XBox with Maleek (his son)
-and other devs. Great time diving and swimming in the pool too with the Lagoon in the background.</p>
-
-<p>Monday doesn&#39;t feel like a workday for me. I so feel out of sync with work that I spent time writing this post.. :D
-I&#39;d probably be better of spending the day on Youtube.</p>
-
-<p>I hope the week comes out good. Writing more clean codes, even though no one sees how beautiful your code is. I&#39;m sure
-whoever maintains my code will have a very low WTF rate.</p>
-
-<p><img src="/images/everyone.jpg" alt="placeholder" title="Everyone"></p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/03/18/its-my-new-blog/">
-        Its my new Blog
-      </a>
-    </h1>
-
-    <span class="post-date">18 Mar 2014</span>
-
-    <p>I really want to write a lot this year. I want to start one way or the other</p>
-
-<p>So help me God
-<img src="/images/io.jpg" alt="placeholder" title="Oyewale-io"></p>
-
-  </div>
-  
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/06/10/enabling-sendmail-on-ubuntu/">
+            Enabling SendMail on Ubuntu
+            <small>10 Jun 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/04/14/exciting-weekend-at-jims-and-another-monday/">
+            Exciting weekend at Jim's and another Monday at work
+            <small>14 Apr 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/03/18/its-my-new-blog/">
+            Its my new Blog
+            <small>18 Mar 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
-<div class="pagination">
-  
-    <span class="pagination-item older">Older</span>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
-</div>
     </div>
 
     

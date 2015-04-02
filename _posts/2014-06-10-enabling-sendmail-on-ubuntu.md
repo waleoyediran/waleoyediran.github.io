@@ -48,6 +48,8 @@ Additionally, you might want to tail the log file to monitor sendmail functions.
 ---
 So I hope you have a smoother devlopment experience with mails from your local machine.
 
+![placeholder](/images/tux-mail-1ty.gif "Tux")
+
 
 ** ..with love from Oyewale. **
 

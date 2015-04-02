@@ -19,4 +19,4 @@ I'd probably be better of spending the day on Youtube.
 I hope the week comes out good. Writing more clean codes, even though no one sees how beautiful your code is. I'm sure
 whoever maintains my code will have a very low WTF rate.
 
-
+![placeholder](/images/everyone.jpg "Everyone")

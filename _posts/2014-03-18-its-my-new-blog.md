@@ -11,4 +11,5 @@ tags:
 I really want to write a lot this year. I want to start one way or the other
 
 So help me God
+![placeholder](/images/io.jpg "Oyewale-io")
 
