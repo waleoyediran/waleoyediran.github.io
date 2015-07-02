@@ -132,6 +132,43 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2015/04/09/building-imageing/">
+        Building Imageing
+      </a>
+    </h1>
+
+    <span class="post-date">09 Apr 2015</span>
+
+    <p><img src="/images/imageng.jpg" alt="placeholder" title="Imageing"></p>
+
+<p>In the social media ero we live in, people are extremely conscious of how they are perceived by others. We are seeing a much higher level of expression especially from young people and pictures have become one of the most ubiquitous means of these expressions. Testament to these is the success of various photo-editing applications, Instagram, PicMix and others. The recently concluded Google Cloud Developer Challenge inspired us to create something that we think will help people express themselves more.</p>
+
+<h3>Why we built Imageing?</h3>
+
+<p>While Instagram seem to have grabbed most of the market with their successful Android and iOS apps, they have yet to put the power of their awesome filters into their web app. The instagram web app only allows you to view photos, edit your profile and comment on photos. Considering the large amount of time people spend on their browsers, we thought their we could take advantage of that space and build a useful photo-editing application that would work on a browser and feature custom image filters and incorporate sharing.</p>
+
+<h3>How it works</h3>
+
+<p>We built Imageing with the aim of helping browser-based users aggregate their photos from various social media channels (Facebook, Google+) and also photos on their devices, edit them with various Instagram-like filters and also let them share these edited photos on social media. We also had to ride on our users love for memes, by adding capabilities to create memes out of their photos.
+We included trending photos on the homepage where we feature photos that are attracting high volume of traffic. (You could try it out at http://image.ng).</p>
+
+<h3>How we did it?</h3>
+
+<p>Imageing’s backend is powered by Google’s AppEngine. When you just want to hack and in no mood to bother yourself about infrastructure and scalability challenges, you certainly would want a platform that offers top grade hardware capabilities and offers you features that allows you get a Minimum-Viable-Product within a short timespan. We had no doubt about AppEngine’s reliability. We chose the AppEngine’s Python runtime because, we wanted a simple language that would allow us iterate fast.
+A challenge we had to face was the choice of image processing technique. We had to choose between doing the image processing on the server with Python Image-manipulation Library or on the browser with Javascript. We tried both and compared their performance and decided to go with client-side Image processing.</p>
+
+<h3>Okay, about the team</h3>
+
+<p>Its a small team and most of us like to stay under the radar. Just for the records, we have +Caleb Mbakwe, +Moyinoluwa Adeyemi, +Akinade Gbenga and your’s truly +Oyewale Oyediran working on Imageing. We started building it in the laboratory at the Department of Computer Science at Obafemi Awolowo University during one of our free weekends. I’m always happy to answer questions about Imageing on my twitter handle @waleoyediran, if you tweet at me.</p>
+
+<h3>Where are we going from here?</h3>
+
+<p>We are not calling for an IPO anytime soon (<em>giggles</em>*). We are building new free and premium features into Imageing and improving the user experience. Yes, we are adding premium features, they are central to our monetization strategy. We would be ditching the appspot domain we are currently riding on for what we think is a more exciting domain name. We also have a native app cooking up, we would try to take on the big guys.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2015/04/02/android-sqlite-dao-design/">
         Android SQLite DAO Design
       </a>
@@ -144,289 +181,289 @@
 <p>When your application needs to offer complex data to other applications, the appriopriate approach is to use <a href="http://developer.android.com/guide/topics/providers/content-provider-creating.html">Content Providers</a>. But many simple applications do not need to copy data to other applications. After using various approaches to data-access design over the years, I have been highly influenced by the approach used by the <a href="https://github.com/ushahidi/Ushahidi_Android">Ushahidi Android</a> client.</p>
 
 <p>Consider you want to store rows of Users in SQLite with the POJO described below:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-   <span class="kd">public</span> <span class="kt">int</span> <span class="n">id</span>
-   <span class="kd">public</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
-   <span class="kd">public</span> <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
-   <span class="kd">public</span> <span class="n">Date</span> <span class="n">createdDate</span><span class="o">;</span>
-<span class="o">}</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public class User {
+   public int id
+   public String username;
+   public String email;
+   public Date createdDate;
+}
 </code></pre></div>
 <p>We create an interface class that basically contains the Database schema definition. It contains table name, column names and table creation schema.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserSchema</span> <span class="o">{</span>
-   <span class="n">String</span> <span class="n">USER_TABLE</span> <span class="o">=</span> <span class="s">&quot;users&quot;</span><span class="o">;</span>
-   <span class="n">String</span> <span class="n">COLUMN_ID</span> <span class="o">=</span> <span class="s">&quot;_id&quot;</span><span class="o">;</span>
-   <span class="n">String</span> <span class="n">COLUMN_USER_NAME</span> <span class="o">=</span> <span class="s">&quot;user_name&quot;</span><span class="o">;</span>
-   <span class="n">String</span> <span class="n">COLUMN_EMAIL</span> <span class="o">=</span> <span class="s">&quot;email&quot;</span><span class="o">;</span>
-   <span class="n">String</span> <span class="n">COLUMN_DATE</span> <span class="o">=</span> <span class="s">&quot;created_date&quot;</span><span class="o">;</span>
-   <span class="n">String</span> <span class="n">USER_TABLE_CREATE</span> <span class="o">=</span> <span class="s">&quot;CREATE TABLE IF NOT EXISTS &quot;</span>
-       <span class="o">+</span> <span class="n">USER_TABLE</span>
-       <span class="o">+</span> <span class="s">&quot; (&quot;</span>
-       <span class="o">+</span> <span class="n">COLUMN_ID</span>
-       <span class="o">+</span> <span class="s">&quot; INTEGER PRIMARY KEY, &quot;</span>
-       <span class="o">+</span> <span class="n">COLUMN_USER_NAME</span>
-       <span class="o">+</span> <span class="s">&quot; TEXT NOT NULL, &quot;</span>
-       <span class="o">+</span> <span class="n">COLUMN_EMAIL</span>
-       <span class="o">+</span> <span class="s">&quot; TEXT,&quot;</span>
-       <span class="o">+</span> <span class="n">COLUMN_DATE</span>
-       <span class="o">+</span> <span class="s">&quot;BIGINT &quot;</span>
-   <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public interface IUserSchema {
+   String USER_TABLE = &quot;users&quot;;
+   String COLUMN_ID = &quot;_id&quot;;
+   String COLUMN_USER_NAME = &quot;user_name&quot;;
+   String COLUMN_EMAIL = &quot;email&quot;;
+   String COLUMN_DATE = &quot;created_date&quot;;
+   String USER_TABLE_CREATE = &quot;CREATE TABLE IF NOT EXISTS &quot;
+       + USER_TABLE
+       + &quot; (&quot;
+       + COLUMN_ID
+       + &quot; INTEGER PRIMARY KEY, &quot;
+       + COLUMN_USER_NAME
+       + &quot; TEXT NOT NULL, &quot;
+       + COLUMN_EMAIL
+       + &quot; TEXT,&quot;
+       + COLUMN_DATE
+       + &quot;BIGINT &quot;
+   + &quot;)&quot;;
 
-   <span class="n">String</span><span class="o">[]</span> <span class="n">USER_COLUMNS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="n">COLUMN_ID</span><span class="o">,</span> 
-      <span class="n">COLUMN_USER_NAME</span><span class="o">,</span> <span class="n">COLUMN_EMAIL</span><span class="o">,</span> <span class="n">COLUMN_DATE</span> <span class="o">};</span>
-<span class="o">}</span>
+   String[] USER_COLUMNS = new String[] { COLUMN_ID, 
+      COLUMN_USER_NAME, COLUMN_EMAIL, COLUMN_DATE };
+}
 </code></pre></div>
 <p>The CRUD functionality is abstracted in a DbContentProvider class which is inherited by the UserDao class</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">DbContentProvider</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">SQLiteDatabase</span> <span class="n">mDb</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public abstract class DbContentProvider {
+    public SQLiteDatabase mDb;
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">String</span> <span class="n">selection</span><span class="o">,</span> 
-      <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="n">selection</span><span class="o">,</span> <span class="n">selectionArgs</span><span class="o">);</span>
-    <span class="o">}</span>
+    public int delete(String tableName, String selection, 
+      String[] selectionArgs) {
+        return mDb.delete(tableName, selection, selectionArgs);
+    }
 
-    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">insert</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">ContentValues</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">values</span><span class="o">);</span>
-    <span class="o">}</span>
+    public long insert(String tableName, ContentValues values) {
+        return mDb.insert(tableName, null, values);
+    }
 
-    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">cursorToEntity</span><span class="o">(</span><span class="n">Cursor</span> <span class="n">cursor</span><span class="o">);</span>
+    protected abstract &lt;T&gt; T cursorToEntity(Cursor cursor);
 
-    <span class="kd">public</span> <span class="nf">DbContentProvider</span><span class="o">(</span><span class="n">SQLiteDatabase</span> <span class="n">db</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">this</span><span class="o">.</span><span class="na">mDb</span> <span class="o">=</span> <span class="n">db</span><span class="o">;</span>
-    <span class="o">}</span>
+    public DbContentProvider(SQLiteDatabase db) {
+       this.mDb = db;
+    }
 
-    <span class="kd">public</span> <span class="n">Cursor</span> <span class="nf">query</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">columns</span><span class="o">,</span> 
-      <span class="n">String</span> <span class="n">selection</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">,</span> <span class="n">String</span> <span class="n">sortOrder</span><span class="o">)</span> <span class="o">{</span>
+    public Cursor query(String tableName, String[] columns, 
+      String selection, String[] selectionArgs, String sortOrder) {
 
-       <span class="kd">final</span> <span class="n">Cursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">mDb</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="n">columns</span><span class="o">,</span> 
-        <span class="n">selection</span><span class="o">,</span> <span class="n">selectionArgs</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">sortOrder</span><span class="o">);</span>
+       final Cursor cursor = mDb.query(tableName, columns, 
+        selection, selectionArgs, null, null, sortOrder);
 
-       <span class="k">return</span> <span class="n">cursor</span><span class="o">;</span>
-    <span class="o">}</span>
+       return cursor;
+    }
 
-    <span class="kd">public</span> <span class="n">Cursor</span> <span class="nf">query</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">columns</span><span class="o">,</span> 
-      <span class="n">String</span> <span class="n">selection</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">,</span> <span class="n">String</span> <span class="n">sortOrder</span><span class="o">,</span> 
-      <span class="n">String</span> <span class="n">limit</span><span class="o">)</span> <span class="o">{</span>
+    public Cursor query(String tableName, String[] columns, 
+      String selection, String[] selectionArgs, String sortOrder, 
+      String limit) {
 
-       <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="n">columns</span><span class="o">,</span> <span class="n">selection</span><span class="o">,</span> 
-        <span class="n">selectionArgs</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">sortOrder</span><span class="o">,</span> <span class="n">limit</span><span class="o">);</span>
-    <span class="o">}</span>
+       return mDb.query(tableName, columns, selection, 
+        selectionArgs, null, null, sortOrder, limit);
+    }
 
-    <span class="kd">public</span> <span class="n">Cursor</span> <span class="nf">query</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">columns</span><span class="o">,</span> 
-        <span class="n">String</span> <span class="n">selection</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">,</span> <span class="n">String</span> <span class="n">groupBy</span><span class="o">,</span> 
-        <span class="n">String</span> <span class="n">having</span><span class="o">,</span> <span class="n">String</span> <span class="n">orderBy</span><span class="o">,</span> <span class="n">String</span> <span class="n">limit</span><span class="o">)</span> <span class="o">{</span>
+    public Cursor query(String tableName, String[] columns, 
+        String selection, String[] selectionArgs, String groupBy, 
+        String having, String orderBy, String limit) {
 
-        <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="n">columns</span><span class="o">,</span> <span class="n">selection</span><span class="o">,</span> 
-            <span class="n">selectionArgs</span><span class="o">,</span> <span class="n">groupBy</span><span class="o">,</span> <span class="n">having</span><span class="o">,</span> <span class="n">orderBy</span><span class="o">,</span> <span class="n">limit</span><span class="o">);</span>
-    <span class="o">}</span>
+        return mDb.query(tableName, columns, selection, 
+            selectionArgs, groupBy, having, orderBy, limit);
+    }
 
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">update</span><span class="o">(</span><span class="n">String</span> <span class="n">tableName</span><span class="o">,</span> <span class="n">ContentValues</span> <span class="n">values</span><span class="o">,</span>
-        <span class="n">String</span> <span class="n">selection</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">tableName</span><span class="o">,</span> <span class="n">values</span><span class="o">,</span> <span class="n">selection</span><span class="o">,</span> 
-          <span class="n">selectionArgs</span><span class="o">);</span>
-    <span class="o">}</span>
+    public int update(String tableName, ContentValues values,
+        String selection, String[] selectionArgs) {
+        return mDb.update(tableName, values, selection, 
+          selectionArgs);
+    }
 
-    <span class="kd">public</span> <span class="n">Cursor</span> <span class="nf">rawQuery</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">selectionArgs</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">mDb</span><span class="o">.</span><span class="na">rawQuery</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="n">selectionArgs</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+    public Cursor rawQuery(String sql, String[] selectionArgs) {
+        return mDb.rawQuery(sql, selectionArgs);
+    }
+}
 </code></pre></div>
 <p>The basic functions of the User data-access layer could optionally be described in an Interface such as this.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserDao</span> <span class="o">{</span>
-   <span class="kd">public</span> <span class="n">User</span> <span class="nf">fetchUserById</span><span class="o">(</span><span class="kt">int</span> <span class="n">userId</span><span class="o">);</span>
-   <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">fetchAllUsers</span><span class="o">();</span>
-   <span class="c1">// add user</span>
-   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
-   <span class="c1">// add users in bulk</span>
-   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addUsers</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">);</span>
-   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">deleteAllUsers</span><span class="o">();</span>
-<span class="o">}</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public interface IUserDao {
+   public User fetchUserById(int userId);
+   public List&lt;User&gt; fetchAllUsers();
+   // add user
+   public boolean addUser(User user);
+   // add users in bulk
+   public boolean addUsers(List&lt;User&gt; users);
+   public boolean deleteAllUsers();
+}
 </code></pre></div>
 <p>Now we create our User Data Access class.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">extends</span> <span class="n">DbContentProvider</span> 
-   <span class="kd">implements</span> <span class="n">IUserSchema</span><span class="o">,</span> <span class="n">IUserDao</span> <span class="o">{</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public class UserDao extends DbContentProvider 
+   implements IUserSchema, IUserDao {
 
-   <span class="kd">private</span> <span class="n">Cursor</span> <span class="n">cursor</span><span class="o">;</span>
-   <span class="kd">private</span> <span class="n">ContentValues</span> <span class="n">initialValues</span><span class="o">;</span>
-   <span class="kd">public</span> <span class="nf">UserDao</span><span class="o">(</span><span class="n">SQLiteDatabase</span> <span class="n">db</span><span class="o">)</span> <span class="o">{</span>
-      <span class="kd">super</span><span class="o">(</span><span class="n">db</span><span class="o">);</span>
-   <span class="o">}</span>
-   <span class="kd">public</span> <span class="n">User</span> <span class="nf">fetchUserByID</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-   <span class="kd">final</span> <span class="n">String</span> <span class="n">selectionArgs</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">id</span><span class="o">)</span> <span class="o">};</span>
-   <span class="kd">final</span> <span class="n">String</span> <span class="n">selection</span> <span class="o">=</span> <span class="n">ID</span> <span class="o">+</span> <span class="s">&quot; = ?&quot;</span><span class="o">;</span>
-   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">User</span><span class="o">();</span>
-   <span class="n">cursor</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">USER_TABLE</span><span class="o">,</span> <span class="n">USER_COLUMNS</span><span class="o">,</span> <span class="n">selection</span><span class="o">,</span>
-           <span class="n">selectionArgs</span><span class="o">,</span> <span class="n">COLUMN_ID</span><span class="o">);</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-       <span class="n">cursor</span><span class="o">.</span><span class="na">moveToFirst</span><span class="o">();</span>
-       <span class="k">while</span> <span class="o">(!</span><span class="n">cursor</span><span class="o">.</span><span class="na">isAfterLast</span><span class="o">())</span> <span class="o">{</span>
-           <span class="n">user</span> <span class="o">=</span> <span class="n">cursorToEntity</span><span class="o">(</span><span class="n">cursor</span><span class="o">);</span>
-           <span class="n">cursor</span><span class="o">.</span><span class="na">moveToNext</span><span class="o">();</span>
-       <span class="o">}</span>
-       <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-   <span class="o">}</span>
+   private Cursor cursor;
+   private ContentValues initialValues;
+   public UserDao(SQLiteDatabase db) {
+      super(db);
+   }
+   public User fetchUserByID(int id) {
+   final String selectionArgs[] = { String.valueOf(id) };
+   final String selection = ID + &quot; = ?&quot;;
+   User user = new User();
+   cursor = super.query(USER_TABLE, USER_COLUMNS, selection,
+           selectionArgs, COLUMN_ID);
+   if (cursor != null) {
+       cursor.moveToFirst();
+       while (!cursor.isAfterLast()) {
+           user = cursorToEntity(cursor);
+           cursor.moveToNext();
+       }
+       cursor.close();
+   }
 
-   <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
-   <span class="o">}</span>
+   return user;
+   }
 
-   <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">fetchAllUsers</span><span class="o">()</span> <span class="o">{</span>
-       <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;();</span>
-       <span class="n">cursor</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">USER_TABLE</span><span class="o">,</span> <span class="n">USER_COLUMNS</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span>
-               <span class="kc">null</span><span class="o">,</span> <span class="n">COLUMN_ID</span><span class="o">);</span>
+   public List&lt;User&gt; fetchAllUsers() {
+       List&lt;User&gt; userList = new ArrayList&lt;User&gt;();
+       cursor = super.query(USER_TABLE, USER_COLUMNS, null,
+               null, COLUMN_ID);
 
-       <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-           <span class="n">cursor</span><span class="o">.</span><span class="na">moveToFirst</span><span class="o">();</span>
-           <span class="k">while</span> <span class="o">(!</span><span class="n">cursor</span><span class="o">.</span><span class="na">isAfterLast</span><span class="o">())</span> <span class="o">{</span>
-               <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">cursorToEntity</span><span class="o">(</span><span class="n">cursor</span><span class="o">);</span>
-               <span class="n">userList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-               <span class="n">cursor</span><span class="o">.</span><span class="na">moveToNext</span><span class="o">();</span>
-           <span class="o">}</span>
-           <span class="n">cursor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-       <span class="o">}</span>
+       if (cursor != null) {
+           cursor.moveToFirst();
+           while (!cursor.isAfterLast()) {
+               User user = cursorToEntity(cursor);
+               userList.add(user);
+               cursor.moveToNext();
+           }
+           cursor.close();
+       }
 
-       <span class="k">return</span> <span class="n">userList</span><span class="o">;</span>
-    <span class="o">}</span>
+       return userList;
+    }
 
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-       <span class="c1">// set values</span>
-       <span class="n">setContentValue</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-       <span class="k">try</span> <span class="o">{</span>
-           <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">USER_TABLE</span><span class="o">,</span> <span class="n">getContentValue</span><span class="o">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span>
-       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SQLiteConstraintException</span> <span class="n">ex</span><span class="o">){</span>
-           <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="s">&quot;Database&quot;</span><span class="o">,</span> <span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-           <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-       <span class="o">}</span>
-    <span class="o">}</span>
+    public boolean addUser(User user) {
+       // set values
+       setContentValue(user);
+       try {
+           return super.insert(USER_TABLE, getContentValue()) &gt; 0;
+       } catch (SQLiteConstraintException ex){
+           Log.w(&quot;Database&quot;, ex.getMessage());
+           return false;
+       }
+    }
 
-    <span class="kd">protected</span> <span class="n">User</span> <span class="nf">cursorToEntity</span><span class="o">(</span><span class="n">Cursor</span> <span class="n">cursor</span><span class="o">)</span> <span class="o">{</span>
+    protected User cursorToEntity(Cursor cursor) {
 
-       <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">User</span><span class="o">();</span>
+       User user = new User();
 
-       <span class="kt">int</span> <span class="n">idIndex</span><span class="o">;</span>
-       <span class="kt">int</span> <span class="n">userNameIndex</span><span class="o">;</span>
-       <span class="kt">int</span> <span class="n">emailIndex</span><span class="o">;</span>
-       <span class="kt">int</span> <span class="n">dateIndex</span><span class="o">;</span>
+       int idIndex;
+       int userNameIndex;
+       int emailIndex;
+       int dateIndex;
 
-       <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-           <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndex</span><span class="o">(</span><span class="n">COLUMN_ID</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-               <span class="n">idIndex</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndexOrThrow</span><span class="o">(</span><span class="n">COLUMN_ID</span><span class="o">);</span>
-               <span class="n">user</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="n">idIndex</span><span class="o">);</span>
-           <span class="o">}</span>
-           <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndex</span><span class="o">(</span><span class="n">COLUMN_USER_NAME</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-               <span class="n">userNameIndex</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndexOrThrow</span><span class="o">(</span>
-                <span class="n">COLUMN_USER_NAME</span><span class="o">);</span>
-               <span class="n">user</span><span class="o">.</span><span class="na">username</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="n">userNameIndex</span><span class="o">);</span>
-           <span class="o">}</span>
-           <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndex</span><span class="o">(</span><span class="n">COLUMN_EMAIL</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-               <span class="n">emailIndex</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndexOrThrow</span><span class="o">(</span>
-                <span class="n">COLUMN_EMAIL</span><span class="o">);</span>
-               <span class="n">user</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="n">emailIndex</span><span class="o">);</span>
-           <span class="o">}</span>
-           <span class="k">if</span> <span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndex</span><span class="o">(</span><span class="n">COLUMN_DATE</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-               <span class="n">dateIndex</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">getColumnIndexOrThrow</span><span class="o">(</span><span class="n">COLUMN_DATE</span><span class="o">);</span>
-               <span class="n">user</span><span class="o">.</span><span class="na">createdDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">(</span><span class="n">cursor</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">dateIndex</span><span class="o">));</span>
-           <span class="o">}</span>
+       if (cursor != null) {
+           if (cursor.getColumnIndex(COLUMN_ID) != -1) {
+               idIndex = cursor.getColumnIndexOrThrow(COLUMN_ID);
+               user.id = cursor.getInt(idIndex);
+           }
+           if (cursor.getColumnIndex(COLUMN_USER_NAME) != -1) {
+               userNameIndex = cursor.getColumnIndexOrThrow(
+                COLUMN_USER_NAME);
+               user.username = cursor.getString(userNameIndex);
+           }
+           if (cursor.getColumnIndex(COLUMN_EMAIL) != -1) {
+               emailIndex = cursor.getColumnIndexOrThrow(
+                COLUMN_EMAIL);
+               user.email = cursor.getString(emailIndex);
+           }
+           if (cursor.getColumnIndex(COLUMN_DATE) != -1) {
+               dateIndex = cursor.getColumnIndexOrThrow(COLUMN_DATE);
+               user.createdDate = new Date(cursor.getLong(dateIndex));
+           }
 
-       <span class="o">}</span>
-       <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
-    <span class="o">}</span>
+       }
+       return user;
+    }
 
-    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">setContentValue</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-       <span class="n">initialValues</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ContentValues</span><span class="o">();</span>
-       <span class="n">initialValues</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">COLUMN_ID</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">id</span><span class="o">);</span>
-       <span class="n">initialValues</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">COLUMN_USER_NAME</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">username</span><span class="o">);</span>
-       <span class="n">initialValues</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">COLUMN_EMAIL</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">email</span><span class="o">);</span>
-       <span class="n">initialValues</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">COLUMN_DATE</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">createdDate</span><span class="o">.</span><span class="na">getTime</span><span class="o">());</span>
-    <span class="o">}</span>
+    private void setContentValue(User user) {
+       initialValues = new ContentValues();
+       initialValues.put(COLUMN_ID, user.id);
+       initialValues.put(COLUMN_USER_NAME, user.username);
+       initialValues.put(COLUMN_EMAIL, user.email);
+       initialValues.put(COLUMN_DATE, user.createdDate.getTime());
+    }
 
-    <span class="kd">private</span> <span class="n">ContentValues</span> <span class="nf">getContentValue</span><span class="o">()</span> <span class="o">{</span>
-       <span class="k">return</span> <span class="n">initialValues</span><span class="o">;</span>
-    <span class="o">}</span>
+    private ContentValues getContentValue() {
+       return initialValues;
+    }
 
-<span class="o">}</span>
+}
 </code></pre></div>
 <p>Having our Data Access Object class setup, we then proceed to create our Database Helper class that provides an handle to the database resource. Its important to increment the DatabaseVersion on every schema change.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
-   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;MyDatabase&quot;</span><span class="o">;</span>
-   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s">&quot;my_database.db&quot;</span><span class="o">;</span>
-   <span class="kd">private</span> <span class="n">DatabaseHelper</span> <span class="n">mDbHelper</span><span class="o">;</span>
-   <span class="c1">// Increment DB Version on any schema change</span>
-   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DATABASE_VERSION</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-   <span class="kd">private</span> <span class="kd">final</span> <span class="n">Context</span> <span class="n">mContext</span>
-   <span class="kd">public</span> <span class="kd">static</span> <span class="n">UserDao</span> <span class="n">mUserDao</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public class Database {
+   private static final String TAG = &quot;MyDatabase&quot;;
+   private static final String DATABASE_NAME = &quot;my_database.db&quot;;
+   private DatabaseHelper mDbHelper;
+   // Increment DB Version on any schema change
+   private static final int DATABASE_VERSION = 1;
+   private final Context mContext
+   public static UserDao mUserDao;
 
 
 
-   <span class="kd">public</span> <span class="n">Database</span> <span class="nf">open</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
-       <span class="n">mDbHelper</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DatabaseHelper</span><span class="o">(</span><span class="n">mContext</span><span class="o">);</span>
-       <span class="n">SQLiteDatabase</span> <span class="n">mDb</span> <span class="o">=</span> <span class="n">mDbHelper</span><span class="o">.</span><span class="na">getWritableDatabase</span><span class="o">();</span>
+   public Database open() throws SQLException {
+       mDbHelper = new DatabaseHelper(mContext);
+       SQLiteDatabase mDb = mDbHelper.getWritableDatabase();
 
-       <span class="n">mUserDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">UserDao</span><span class="o">(</span><span class="n">mDb</span><span class="o">);</span>
+       mUserDao = new UserDao(mDb);
 
-       <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-   <span class="o">}</span>
+       return this;
+   }
 
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
-       <span class="n">mDbHelper</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-   <span class="o">}</span>
+   public void close() {
+       mDbHelper.close();
+   }
 
-   <span class="kd">public</span> <span class="nf">Database</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">this</span><span class="o">.</span><span class="na">mContext</span> <span class="o">=</span> <span class="n">context</span><span class="o">;</span>
-   <span class="o">}</span>
+   public Database(Context context) {
+       this.mContext = context;
+   }
 
 
-   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">DatabaseHelper</span> <span class="kd">extends</span> <span class="n">SQLiteOpenHelper</span> <span class="o">{</span>
-       <span class="n">DatabaseHelper</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-           <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">DATABASE_NAME</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">DATABASE_VERSION</span><span class="o">);</span>
-       <span class="o">}</span>
+   private static class DatabaseHelper extends SQLiteOpenHelper {
+       DatabaseHelper(Context context) {
+           super(context, DATABASE_NAME, null, DATABASE_VERSION);
+       }
 
-       <span class="nd">@Override</span>
-       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">SQLiteDatabase</span> <span class="n">db</span><span class="o">)</span> <span class="o">{</span>
-           <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="n">IUserSchema</span><span class="o">.</span><span class="na">USER_TABLE_CREATE</span><span class="o">);</span>
-       <span class="o">}</span>
+       @Override
+       public void onCreate(SQLiteDatabase db) {
+           db.execSQL(IUserSchema.USER_TABLE_CREATE);
+       }
 
-       <span class="nd">@Override</span>
-       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onUpgrade</span><span class="o">(</span><span class="n">SQLiteDatabase</span> <span class="n">db</span><span class="o">,</span> <span class="kt">int</span> <span class="n">oldVersion</span><span class="o">,</span>
-          <span class="kt">int</span> <span class="n">newVersion</span><span class="o">)</span> <span class="o">{</span>
-           <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Upgrading database from version &quot;</span> 
-                <span class="o">+</span> <span class="n">oldVersion</span> <span class="o">+</span> <span class="s">&quot; to &quot;</span>
-                <span class="o">+</span> <span class="n">newVersion</span> <span class="o">+</span> <span class="s">&quot; which destroys all old data&quot;</span><span class="o">);</span>
+       @Override
+       public void onUpgrade(SQLiteDatabase db, int oldVersion,
+          int newVersion) {
+           Log.w(TAG, &quot;Upgrading database from version &quot; 
+                + oldVersion + &quot; to &quot;
+                + newVersion + &quot; which destroys all old data&quot;);
 
-           <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="s">&quot;DROP TABLE IF EXISTS &quot;</span> 
-                <span class="o">+</span> <span class="n">IUserSchema</span><span class="o">.</span><span class="na">USER_TABLE</span><span class="o">);</span>
-           <span class="n">onCreate</span><span class="o">(</span><span class="n">db</span><span class="o">);</span>
+           db.execSQL(&quot;DROP TABLE IF EXISTS &quot; 
+                + IUserSchema.USER_TABLE);
+           onCreate(db);
 
-       <span class="o">}</span>
-   <span class="o">}</span>
+       }
+   }
 
-<span class="o">}</span>
+}
 </code></pre></div>
 <p>The Database helper class creates an instance of the DAO class on opening the DB resource
 The pattern aslo encourages having one static handle on the database  which could be created in a Application subclass. The DB is opened onCreate of the application and closed onTerminate to avoid leaks.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
-   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="n">MainApplication</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
-   <span class="kd">public</span> <span class="kd">static</span> <span class="n">Database</span> <span class="n">mDb</span><span class="o">;</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public class MainApplication extends Application {
+   public static final String TAG = MainApplication.class.getSimpleName();
+   public static Database mDb;
 
 
-   <span class="nd">@Override</span>
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
-       <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
-       <span class="n">mDb</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Database</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-       <span class="n">mDb</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
-   <span class="o">}</span>
+   @Override
+   public void onCreate() {
+       super.onCreate();
+       mDb = new Database(this);
+       mDb.open();
+   }
 
-   <span class="nd">@Override</span>
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTerminate</span><span class="o">()</span> <span class="o">{</span>
-       <span class="n">mDb</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-       <span class="kd">super</span><span class="o">.</span><span class="na">onTerminate</span><span class="o">();</span>
-   <span class="o">}</span>
+   @Override
+   public void onTerminate() {
+       mDb.close();
+       super.onTerminate();
+   }
 
-<span class="o">}</span>
+}
 </code></pre></div>
 <p>Now in any part of your application, you can grab a user by his id like this:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">UserEntity</span> <span class="n">user</span> <span class="o">=</span> <span class="n">Database</span><span class="o">.</span><span class="na">mUserDao</span><span class="o">.</span><span class="na">fetchUserByID</span><span class="o">(</span><span class="n">userId</span><span class="o">);</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">UserEntity user = Database.mUserDao.fetchUserByID(userId);
 </code></pre></div>
 <p>and insert a user into the Database</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kt">boolean</span> <span class="n">isSaved</span> <span class="o">=</span> <span class="n">Database</span><span class="o">.</span><span class="na">mUserDao</span><span class="o">.</span><span class="na">addUser</span><span class="o">(</span><span class="n">user</span><span class="o">)</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">boolean isSaved = Database.mUserDao.addUser(user)
 </code></pre></div>
 <h3>Credit</h3>
 
@@ -446,15 +483,15 @@ The pattern aslo encourages having one static handle on the database  which coul
     <p>So I guess you are building an application that requires email to be sent out. Depending on your platform (PHP has the builtin <a href="http://www.php.net/manual/en/function.mail.php">mail()</a> function and perhaps AppEngine&#39;s <a href="https://developers.google.com/appengine/docs/python/mail/functions#send_mail">Sendmail function</a>), you might find yourself needing to use the Unix sendmail function.</p>
 
 <h2>To Install SendMail on Ubuntu, just run the command</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sudo apt-get install sendmail</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"># sudo apt-get install sendmail
 </code></pre></div>
 <h2>To modify the default configuration:</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># sendmailconfig</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"># sendmailconfig
 </code></pre></div>
 <p>Now your PHP mail() function and other services that depend on Sendmail should be firing now</p>
 
 <p>Additionally, you might want to tail the log file to monitor sendmail functions. </p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># tail -f /var/log/maillog</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"># tail -f /var/log/maillog
 </code></pre></div>
 <hr>
 
