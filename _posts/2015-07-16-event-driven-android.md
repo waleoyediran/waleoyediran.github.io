@@ -2,15 +2,13 @@
 layout: post
 title: Event Driven Android
 author: Oyewale Oyediran
-feature-image: imageng.jpg
+feature-image: event-driven-architecture.png
 tags:
-- social
-- google-cloud
-- gcdc
-- imageing
-- image-processing
-- javascript
-- appengine
+- android
+- otto
+- event-driven
+- architecture
+- dev
 ---
 
 Communication between various components in the Android framework has been one of the major issues facing Android application development. A lot of work-arounds (more like hacks) have been used to solve some of this issues, many of which increases code complexity as the project expands and also leads to grossly inefficient use of the framework.
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 The event-driven paradigm allows for high decoupling between various application components. Example includes Activity-Fragment, Service-Activity communication. The example code implements a simple Service-Activity communication. 
 
-The full source code of the example is available on [Github]. 
+The full source code of the example is available on [Github]. If you have got questions, contributions, corrections, please leave a comment below.
 
 
 
