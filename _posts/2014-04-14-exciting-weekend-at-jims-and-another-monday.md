@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Exciting weekend at Jim's and another Monday at work
+description: Exciting weekend at Jim's and another Monday at work
 author: Oyewale Oyediran
 feature-image: everyone.jpg
 tags:

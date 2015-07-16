@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Its my new Blog
+description: New Blog
 author: Oyewale Oyediran
 feature-image: io.jpg
 tags:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Android SQLite DAO Design
+description: A pattern for designing a good SQLite data-access layer for Android
 author: Oyewale Oyediran
 feature-image: tux-mail-1ty.gif
 tags:

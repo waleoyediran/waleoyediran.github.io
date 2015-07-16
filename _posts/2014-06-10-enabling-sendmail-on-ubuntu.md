@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Enabling SendMail on Ubuntu
+description: Implementing Sendmail on Ubuntu
 author: Oyewale Oyediran
 feature-image: tux-mail-1ty.gif
 tags:

@@ -2,6 +2,7 @@
 layout: post
 title: Building Imageing
 author: Oyewale Oyediran
+description: How we built the Imageing application
 feature-image: imageng.jpg
 tags:
 - social
