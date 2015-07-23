@@ -2,7 +2,7 @@
   
   <div class="container sidebar-sticky">
     <div class="circular"></div>
-    <div class="sidebar-about">
+    <div class="sidebar-about" style="text-align: center;">
             
       <h1>{{ site.title }}</h1>
       <p class="lead">{{ site.description }}</p>
@@ -33,13 +33,12 @@
       
     </ul>
 
-    <div style="width: 50%; margin-left: auto; margin-right: auto;">
-      {% if site.footer-links.github %}<a title="github" target="_blank" href="http://github.com/{{ site.footer-links.github }}">{% include svg_images/github.html %}</a>{% endif %}
-      {% if site.footer-links.twitter %}<a title="twitter" target="_blank" href="http://twitter.com/{{ site.footer-links.twitter }}">{% include svg_images/twitter.html %}</a>{% endif %}
-      {% if site.footer-links.facebook %}<a title="facebook" target="_blank" href="http://facebook.com/{{ site.footer-links.facebook }}">{% include svg_images/facebook.html %}</a>{% endif %}
+    <ul class="soc" style="margin-left: auto; margin-right: auto; text-align: center;">
+      {% if site.footer-links.github %}<li><a title="github" class="soc-github" target="_blank" href="http://github.com/{{ site.footer-links.github }}"></a></li>{% endif %}
+      {% if site.footer-links.twitter %}<li><a title="twitter" class="soc-twitter" target="_blank" href="http://twitter.com/{{ site.footer-links.twitter }}"></a></li>{% endif %}
+      {% if site.footer-links.facebook %}<li><a title="google" class="soc-google" target="_blank" href="http://facebook.com/{{ site.footer-links.facebook }}"></a></li>{% endif %}
+      {% if site.footer-links.linkedin %}<li><a title="linkedin" class="soc-linkedin soc-icon-last" target="_blank" href="http://linkedin.com/in/{{ site.footer-links.linkedin }}"></a></li>{% endif %}
+  </ul>
 
-    </div>
-
-    <p style="text-align: center;">&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
   </div>
 </div>
