@@ -18,13 +18,13 @@ layout: default
   
 
   <footer class="end-of-post" style="padding-top: 20px;">
-                <g:plusone size="medium" href="{{ site.url }}{{ post.url }}"></g:plusone>
+                <g:plusone size="medium" href="{{ site.baseurl}}{{ post.url }}"></g:plusone>
                 <a href="https://twitter.com/share" class="twitter-share-button"
-      data-url="{{ site.url }}{{ post.url }}"
+      data-url="{{ site.baseurl }}{{ post.url }}"
       data-text="{% if post.tweet-text %}{{ post.tweet-text }}{% else %}{{ post.title }}{% endif %}">
                         Tweet
                 </a>
-                <div class="fb-like" data-href="{{ site.url }}{{ post.url }}"
+                <div class="fb-like" data-href="{{ site.baseurl }}{{ post.url }}"
                      data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
 
                 </div>
@@ -36,7 +36,7 @@ layout: default
   </footer>
 </article>
 
-<meta itemprop="url" content="{{ site.url }}{{ post.url }}">
+<meta itemprop="url" content="{{ site.baseurl }}{{ post.url }}">
 
 {% include disqus.html %}
 
