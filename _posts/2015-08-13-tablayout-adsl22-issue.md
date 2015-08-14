@@ -16,7 +16,7 @@ The TabLayout in a Fragment seems to loose its Tabs when you add/replace the fra
 
 ![ADSL Issue](/images/adsl-issue.png)
 
-It is a known [issue], and a permanent workaround is expected in a future release of the library. So Chris Baines recommends a workaround, by replacing your standard setupWithViewPager method,
+It is a known [issue], and a permanent workaround is expected in a future release of the library. So Chris Banes recommends a workaround, by replacing your standard setupWithViewPager method,
 
 ```java
 @Override
