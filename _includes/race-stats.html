@@ -1,0 +1,17 @@
+{% comment %}
+  Race summary card, driven by the `race:` block in the post's front matter.
+  Usage:  {% include race-stats.html %}
+  Optional front matter: race.results_url (adds an "Official results" link)
+{% endcomment %}
+{% assign r = page.race %}
+{% if r %}
+<aside class="race-stats">
+  {% if r.name %}<p class="race-name">{{ r.name }}{% if r.date %} <span>&middot; {{ r.date | date: "%-d %B %Y" }}</span>{% endif %}</p>{% endif %}
+  <dl>
+    {% for stat in r.stats %}
+    <div><dt>{{ stat.label }}</dt><dd>{{ stat.value }}</dd></div>
+    {% endfor %}
+  </dl>
+  {% if r.results_url %}<p class="race-link"><a href="{{ r.results_url }}" target="_blank" rel="noopener">Official results &rarr;</a></p>{% endif %}
+</aside>
+{% endif %}

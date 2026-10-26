@@ -332,7 +332,7 @@ and insert a user into the Database
 boolean isSaved = Database.mUserDao.addUser(user)
 ```
 
-###Credit
+### Credit
 Much of the code here is adapted from the Ushahidi Android Client
 
 

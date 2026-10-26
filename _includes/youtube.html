@@ -1,0 +1,14 @@
+{% comment %}
+  Responsive YouTube embed (privacy-enhanced domain).
+  Usage:
+    {% include youtube.html id="VIDEO_ID" start=754 end=757 caption="Optional caption" %}
+  start/end are in seconds and trim playback to that window.
+{% endcomment %}
+<figure class="post-video">
+  <div class="embed-16x9">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ include.id }}?rel=0{% if include.start %}&amp;start={{ include.start }}{% endif %}{% if include.end %}&amp;end={{ include.end }}{% endif %}"
+            title="{{ include.caption | default: 'YouTube video' | escape }}" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

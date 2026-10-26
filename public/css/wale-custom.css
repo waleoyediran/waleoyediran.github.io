@@ -6,7 +6,7 @@
 	border-radius: 75px;
 	-webkit-border-radius: 75px;
 	-moz-border-radius: 75;
-	background: url(/images/whales.jpg) no-repeat;
+	background: url(/images/avatar.jpg) center / cover no-repeat;
 	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
@@ -118,3 +118,97 @@
 .soc-github:before {
     content:'Q';
 }
+
+/* ---------- Post media (figures, galleries, video) ---------- */
+.post-figure, .post-gallery, .post-video, .post-strava {
+  margin: 1.75rem 0;
+}
+.post-figure img, .post-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 6px;
+}
+.post-figure figcaption, .post-gallery figcaption, .post-video figcaption {
+  margin-top: .5rem;
+  font-size: .85rem;
+  color: #9a9a9a;
+  text-align: center;
+}
+@media (min-width: 64em) {
+  .post-figure.wide { margin-left: -2rem; margin-right: -2rem; }
+}
+.gallery-grid {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.cols-3 .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+.cols-1 .gallery-grid { grid-template-columns: 1fr; }
+.gallery-grid img { aspect-ratio: 4 / 3; object-fit: cover; }
+.ratio-portrait .gallery-grid img { aspect-ratio: 3 / 4; object-position: center top; }
+.post-gallery + .post-gallery { margin-top: -1rem; }
+.post-video video {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 6px;
+  background: #000;
+}
+.embed-16x9 { position: relative; aspect-ratio: 16 / 9; }
+.embed-16x9 iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 6px; }
+
+/* ---------- Race stats card ---------- */
+.race-stats {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #268bd2;
+  background: #f5f8fb;
+  border-radius: 0 6px 6px 0;
+}
+.race-stats .race-name { margin: 0 0 .75rem; font-weight: 700; }
+.race-stats .race-name span { font-weight: 400; color: #9a9a9a; }
+.race-stats dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: .75rem 1rem;
+  margin: 0;
+}
+.race-stats dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: #9a9a9a; }
+.race-stats dd { margin: 0; font-size: 1.15rem; font-weight: 700; }
+
+/* ---------- Post header / footer ---------- */
+.post-subtitle { margin-top: -.5rem; font-size: 1.15rem; color: #717171; }
+.end-of-post { padding-top: 1.5rem; margin-top: 2rem; border-top: 1px solid #eee; font-size: .9rem; }
+.end-of-post a.tag, .end-of-post a.tag:visited { color: #fff; }
+.end-of-post .tag {
+  display: inline-block; margin: 0 .25rem .25rem 0; padding: .1rem .5rem;
+  border-radius: 3px; background: #268bd2; color: #fff; font-size: .8rem;
+}
+.end-of-post .tag:hover { text-decoration: none; opacity: .85; }
+
+/* ---------- Home page excerpts ---------- */
+.post-excerpt { margin-bottom: .5rem; }
+.read-more { font-weight: 700; }
+
+/* ---------- Pace chart ---------- */
+.pace-chart { margin: 1.75rem 0; }
+.pace-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pace-chart figcaption { margin-top: .5rem; font-size: .85rem; color: #9a9a9a; text-align: center; }
+.pc-grid { stroke: #ececec; stroke-width: 1; }
+.pc-base { stroke: #bdbdbd; stroke-width: 1; }
+.pc-axis { font-size: 11px; fill: #8a8a8a; }
+.pc-bar rect { fill: #268bd2; }
+.pc-slow rect { fill: #c4701f; }
+.pc-bar:hover rect { opacity: .8; }
+.pc-val { font-size: 11px; font-weight: 700; fill: #fff; }
+.pc-goal { stroke: #313131; stroke-width: 1.5; stroke-dasharray: 5 4; }
+.pc-goal-label { font-size: 11px; fill: #313131; }
+.pc-marker { stroke: #c4701f; stroke-width: 1.5; stroke-dasharray: 2 3; }
+.pc-note { font-size: 11px; font-weight: 700; fill: #313131; }
+.pc-table { margin-top: .75rem; font-size: .85rem; }
+.pc-table summary { cursor: pointer; color: #717171; }
+.pc-table table { margin-top: .5rem; }
+.post-figure.portrait { max-width: 420px; margin-left: auto; margin-right: auto; }
+.race-stats .race-link { margin: .75rem 0 0; font-size: .85rem; font-weight: 700; }

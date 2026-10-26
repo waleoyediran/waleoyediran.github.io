@@ -7,14 +7,17 @@ title: Home
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ post.url }}">
+      <a href="{{ post.url | relative_url }}">
         {{ post.title }}
       </a>
     </h1>
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    <div class="post-excerpt">
+      {% if post.description %}<p>{{ post.description }}</p>{% else %}{{ post.excerpt }}{% endif %}
+    </div>
+    <a class="read-more" href="{{ post.url | relative_url }}">Read more &rarr;</a>
   </div>
   {% endfor %}
 </div>

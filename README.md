@@ -1,118 +1,50 @@
-# Hyde
+# wale.oyediran.me
 
-Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+Personal blog, built with [Jekyll](https://jekyllrb.com) (based on the [Hyde](https://github.com/poole/hyde) theme) and hosted on GitHub Pages from the `master` branch.
 
-![Hyde screenshot](https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png)
+## Run locally
 
+Needs Ruby 3.x (system Ruby on macOS is too old; use `chruby`/`rbenv`/Homebrew Ruby).
 
-## Contents
-
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Sticky sidebar content](#sticky-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-
-
-## Usage
-
-Hyde is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
-
-
-## Options
-
-Hyde includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Sidebar menu
-
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
-
-```
----
-layout: page
-title: About
----
+```sh
+bundle install
+bundle exec jekyll serve --drafts --livereload   # http://localhost:4000
 ```
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+`--drafts` includes posts in `_drafts/`. Drop it to see exactly what will be published.
 
+## Writing a post
 
-### Sticky sidebar content
+1. Start in `_drafts/my-post.md` (no date needed). Front matter defaults (`layout: post`, author) come from `_config.yml`.
+2. When ready, move it to `_posts/YYYY-MM-DD-my-post.md` and push.
 
-By default Hyde ships with a sidebar that affixes it's content to the bottom of the sidebar. You can optionally disabled this by removing the `.sidebar-sticky` class from the sidebar's `.container`. Sidebar content will then normally flow from top to bottom.
+### Media includes
 
-```html
-<!-- Default sidebar -->
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    ...
-  </div>
-</div>
-
-<!-- Modified sidebar -->
-<div class="sidebar">
-  <div class="container">
-    ...
-  </div>
-</div>
+```liquid
+{% include figure.html src="/images/folder/photo.jpg" alt="..." caption="..." %}            <!-- add class="wide" to bleed wider -->
+{% include gallery.html images="/images/a.jpg,/images/b.jpg,/images/c.jpg" caption="..." %}
+{% include video.html src="/videos/clip.mp4" poster="/images/poster.jpg" caption="..." %}   <!-- silent autoplay loop, like a GIF -->
+{% include youtube.html id="VIDEO_ID" start=10 end=13 caption="..." %}
+{% include strava.html id="ACTIVITY_ID" %}
+{% include race-stats.html %}                                                              <!-- reads `race:` from front matter -->
 ```
 
+### Preparing media
 
-### Themes
+Phone photos are huge. Resize before committing (macOS built-in):
 
-Hyde ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
-
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
-
-There are eight themes available at this time.
-
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
+```sh
+sips -Z 2000 -s formatOptions 80 images/folder/*.jpg
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/hyde/blob/master/public/css/hyde.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+Trim a short clip (e.g. 3 s starting at 1:23) and make it web-friendly:
 
-### Reverse layout
-
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
-
-Hyde's page orientation can be reversed with a single class.
-
-```html
-<body class="layout-reverse">
-  ...
-</body>
+```sh
+ffmpeg -ss 00:01:23 -i input.mov -t 3 -an -vf "scale=-2:720" \
+  -c:v libx264 -crf 23 -preset veryfast -pix_fmt yuv420p -movflags +faststart videos/clip.mp4
+ffmpeg -ss 1 -i videos/clip.mp4 -frames:v 1 images/folder/clip-poster.jpg   # poster frame
 ```
-
-
-## Development
-
-Hyde has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be to submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
 
 ## License
 
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+Theme: MIT (see `LICENSE.md`). Post content © Oyewale Oyediran.
