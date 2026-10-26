@@ -17,10 +17,10 @@ The event-driven architecture utilizes the [Publisher-Subscriber pattern] to sol
 
 ![Event Driven Architecture](/images/event-driven-architecture.png)
 
-###About Otto
+### About Otto
 There are a couple of libraries that help with implementing the event bus on Android, some of which includes [EventBus], [Otto]. I have used Otto in some projects i have worked on and I will be explaining the fundamentals.  Otto is an event bus designed to decouple different parts of your application while still allowing them to communicate efficiently. It is quite simple to use and highly optimized for Android.
 
-####Create the Bus
+#### Create the Bus
 You simply create a Bus object, which is the event bus implementation.
 
 ```Bus bus = new Bus();```
@@ -40,7 +40,7 @@ public class MainApplication extends Application {
 }
 ```
 
-####Publishing Events
+#### Publishing Events
 Publishing an event is by calling the ``` .post(event)``` method of the Bus class.
 
 ```java
@@ -58,7 +58,7 @@ bus.post(event);
 ```
 
 
-####Registering and Unregistering for Events
+#### Registering and Unregistering for Events
 
 Subscribing your consuming component to the event bus is achieved by registering the component class on the Bus, bus.register(this); and annotating a method with ``` @Subscribe``` which will receive a single parameter with the type representing the event you wish to subscribe to. For example, subscribing an activity class;
 

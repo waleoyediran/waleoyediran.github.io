@@ -1,0 +1,78 @@
+{% comment %}
+  Pace-per-split bar chart, drawn as inline SVG from `race.splits` in front matter.
+  Each split: { from: km, to: km, label: "5 km", pace: "m:ss" }   (pace = min/km)
+  Optional front matter: race.goal_pace ("5:41"), race.highlight_from (first km of the orange splits),
+                         race.highlight_at (km for the marker line; defaults to highlight_from),
+                         race.highlight_label ("Cramps from km 25")
+  Usage:  {% include pace-chart.html caption="..." %}
+{% endcomment %}
+{% assign r = page.race %}
+{% assign L = 52 %}{% assign R = 624 %}{% assign T = 24 %}{% assign B = 232 %}
+{% assign pxkm = 13.556 %}{% assign lo = 300 %}{% assign ys = 1.04 %}
+<figure class="pace-chart">
+  <svg viewBox="0 0 640 272" role="img" aria-labelledby="pace-title pace-desc" xmlns="http://www.w3.org/2000/svg">
+    <title id="pace-title">Pace per split</title>
+    <desc id="pace-desc">Minutes per kilometre for each timing split; taller bars are slower.</desc>
+
+    {% comment %} grid + y labels {% endcomment %}
+    {% assign yticks = "300:5:00,360:6:00,420:7:00,480:8:00" | split: "," %}
+    {% for t in yticks %}{% assign tp = t | split: ":" %}{% assign v = tp[0] | plus: 0 %}
+      {% assign y = v | minus: lo | times: ys | times: -1 | plus: B %}
+      <line x1="{{ L }}" x2="{{ R }}" y1="{{ y }}" y2="{{ y }}" class="pc-grid"/>
+      <text x="{{ L | minus: 8 }}" y="{{ y | plus: 4 }}" class="pc-axis" text-anchor="end">{{ tp[1] }}:{{ tp[2] }}</text>
+    {% endfor %}
+
+    {% comment %} bars {% endcomment %}
+    {% for s in r.splits %}
+      {% assign p = s.pace | split: ":" %}
+      {% assign secs = p[0] | times: 60 | plus: p[1] %}
+      {% assign x = s.from | times: pxkm | plus: L | plus: 1 %}
+      {% assign w = s.to | minus: s.from | times: pxkm | minus: 2 %}
+      {% assign y = secs | minus: lo | times: ys | times: -1 | plus: B %}
+      {% assign h = B | minus: y %}
+      {% if r.highlight_from and s.from >= r.highlight_from %}{% assign cls = "pc-bar pc-slow" %}{% else %}{% assign cls = "pc-bar" %}{% endif %}
+      <g class="{{ cls }}">
+        <title>{{ s.label }}: {{ s.pace }} /km</title>
+        <rect x="{{ x }}" y="{{ y }}" width="{{ w }}" height="{{ h }}" rx="3"/>
+        <rect x="{{ x }}" y="{{ y | plus: 3 }}" width="{{ w }}" height="{{ h | minus: 3 }}"/>
+        {% if w > 24 %}<text x="{{ w | divided_by: 2.0 | plus: x }}" y="{{ y | plus: 16 }}" class="pc-val" text-anchor="middle">{{ s.pace }}</text>{% endif %}
+      </g>
+    {% endfor %}
+
+    {% comment %} goal pace line {% endcomment %}
+    {% if r.goal_pace %}
+      {% assign gp = r.goal_pace | split: ":" %}
+      {% assign gs = gp[0] | times: 60 | plus: gp[1] %}
+      {% assign gy = gs | minus: lo | times: ys | times: -1 | plus: B %}
+      <line x1="{{ L }}" x2="{{ R }}" y1="{{ gy }}" y2="{{ gy }}" class="pc-goal"/>
+      <text x="{{ L | plus: 4 }}" y="{{ gy | minus: 7 }}" class="pc-goal-label">Goal pace {{ r.goal_pace }} /km</text>
+    {% endif %}
+
+    {% comment %} highlight marker {% endcomment %}
+    {% if r.highlight_from %}
+      {% assign hkm = r.highlight_at | default: r.highlight_from %}
+      {% assign hx = hkm | times: pxkm | plus: L %}
+      <line x1="{{ hx }}" x2="{{ hx }}" y1="{{ T }}" y2="{{ B }}" class="pc-marker"/>
+      <text x="{{ hx | plus: 6 }}" y="{{ T | plus: 2 }}" class="pc-note">{{ r.highlight_label }}</text>
+    {% endif %}
+
+    {% comment %} x axis {% endcomment %}
+    <line x1="{{ L }}" x2="{{ R }}" y1="{{ B }}" y2="{{ B }}" class="pc-base"/>
+    {% assign xticks = "0,5,10,15,20,25,30,35,40" | split: "," %}
+    {% for k in xticks %}{% assign kx = k | times: pxkm | plus: L %}
+      <text x="{{ kx }}" y="{{ B | plus: 18 }}" class="pc-axis" text-anchor="middle">{{ k }}</text>
+    {% endfor %}
+    <text x="{{ R }}" y="{{ B | plus: 18 }}" class="pc-axis" text-anchor="middle">42.2</text>
+    <text x="{{ L | plus: R | divided_by: 2 }}" y="{{ B | plus: 38 }}" class="pc-axis" text-anchor="middle">Distance (km). Taller bar = slower pace (min/km)</text>
+  </svg>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+  <details class="pc-table">
+    <summary>Show splits as a table</summary>
+    <table>
+      <thead><tr><th>Split</th><th>Segment</th><th>Pace (min/km)</th></tr></thead>
+      <tbody>
+      {% for s in r.splits %}<tr><td>{{ s.label }}</td><td>{{ s.from }}–{{ s.to }} km</td><td>{{ s.pace }}</td></tr>{% endfor %}
+      </tbody>
+    </table>
+  </details>
+</figure>

@@ -1,0 +1,20 @@
+{% comment %}
+  Grid of 2-4 images. Separate paths with commas (no spaces).
+  Usage:
+    {% include gallery.html images="/images/a.jpg,/images/b.jpg,/images/c.jpg" caption="Optional caption for the set" %}
+  Optional: alts="alt one|alt two|alt three" (pipe-separated, same order)
+            ratio="portrait"  (3:4 tiles for phone photos; default is 4:3 landscape)
+{% endcomment %}
+{% assign gallery_images = include.images | split: ',' %}
+{% assign gallery_alts = include.alts | split: '|' %}
+<figure class="post-gallery cols-{{ gallery_images.size | at_most: 3 }}{% if include.ratio == 'portrait' %} ratio-portrait{% endif %}">
+  <div class="gallery-grid">
+    {% for img in gallery_images %}
+      {% assign i = forloop.index0 %}
+      <a href="{{ img | strip | relative_url }}" target="_blank" rel="noopener">
+        <img src="{{ img | strip | relative_url }}" alt="{{ gallery_alts[i] | default: include.caption | escape }}" loading="lazy">
+      </a>
+    {% endfor %}
+  </div>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>

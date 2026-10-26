@@ -1,6 +1,11 @@
-# Dependencies
-markdown:         redcarpet
-pygments:         true
+# Build settings (match GitHub Pages)
+markdown:         kramdown
+highlighter:      rouge
+kramdown:
+  input:          GFM
+  syntax_highlighter: rouge
+plugins:
+  - jekyll-paginate
 
 # Permalinks
 permalink:        pretty
@@ -9,23 +14,48 @@ permalink:        pretty
 title:            Oyewale
 tagline:          'Code Ninja'
 description:      'For the love of Software'
-url:              http://wale.oyediran.me
+url:              https://wale.oyediran.me
+baseurl:          ''
 
 author:
   name:           'Oyewale Oyediran'
   url:            https://twitter.com/waleoyediran
 
 paginate:         5
+paginate_path:    /page:num/
 
-# Custom vars
-version:          1.0.0
+# Comments (Disqus). Remove or blank this to turn comments off site-wide,
+# or set `comments: false` in a single post's front matter.
+disqus_shortname: oyewalesblog
+
+# Analytics: paste a GA4 measurement ID (G-XXXXXXX) to enable. Blank = off.
+google_analytics:
+
+# Default social preview image (relative to site root)
+default_image:    /images/social-default.jpg   # finish-line photo, 1200x630
 
 github:
   repo:           https://github.com/waleoyediran/waleoyediran.github.io/
 
 footer-links:
   github:         waleoyediran
-  facebook:       waleoyediran 	
   twitter:        waleoyediran
-  gplus:          OyewaleOyediran
-  linkedin:		  waleoyediran
+  linkedin:       waleoyediran
+
+# Defaults so new posts need less front matter
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Oyewale Oyediran
+
+exclude:
+  - README.md
+  - LICENSE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - HOUSEKEEPING-TODO.md
+  - serve.command

@@ -1,0 +1,16 @@
+{% comment %}
+  Self-hosted short clip that plays like a GIF (autoplay, muted, looping).
+  Best for a few-second moment like a finish-line crossing.
+  Usage:
+    {% include video.html src="/videos/berlin-finish.mp4" poster="/images/2026-berlin-marathon/finish-poster.jpg" caption="Crossing the line" %}
+  Optional: controls=true  (show player controls instead of silent looping)
+{% endcomment %}
+<figure class="post-video">
+  <video {% if include.controls %}controls{% else %}autoplay muted loop{% endif %} playsinline preload="metadata"
+         {% if include.poster %}poster="{{ include.poster | relative_url }}"{% endif %}>
+    {% if include.webm %}<source src="{{ include.webm | relative_url }}" type="video/webm">{% endif %}
+    <source src="{{ include.src | relative_url }}" type="video/mp4">
+    Your browser can't play this video. <a href="{{ include.src | relative_url }}">Download it</a>.
+  </video>
+  {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+</figure>
