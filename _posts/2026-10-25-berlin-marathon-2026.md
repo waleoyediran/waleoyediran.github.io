@@ -151,3 +151,7 @@ A month on since race day and I've been fully focused on recovery with light exe
 ## Thanks
 
 It took a village. My family, my friends. Moyin and Tobi coming to cheer. My Berliners who came to keep me in good spirits, Efe, Oshomo, Hannah, Peace, Boye, SF, Abi, Amy, Omo, Funto. My training partners back in Kitchener (Bobola, Destiny). My physio, Jayde, helped me stay injury-free. My virtual accountability friends (Ope, Matteo, Sheddy). My hosts, Ike and Mofe.
+
+## What I learned?
+
+I (re)learned that I can do really hard things and I have a huge support system to keep me going.
