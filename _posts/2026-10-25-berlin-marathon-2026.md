@@ -114,7 +114,7 @@ I knew what this meant: my sub-4 goal was gone. I just had to will myself to the
 
 Moyin and Tobi were waiting for me at 37km, where I had asked them to stay because I thought I could comfortably get there and would need their motivation by then. Moyin already knew (from the live tracking) that the marathon gods had come for me, but they still gave me enough motivation to pick up the pace slowly and finish as best as I could. It meant everything to me.
 
-{% include gallery.html images="/images/2026-berlin-marathon/km35-gedaechtniskirche.jpg,/images/2026-berlin-marathon/km36-wave.jpg,/images/2026-berlin-marathon/km41-unter-den-linden.jpg" alts="Running past the Kaiser Wilhelm Memorial Church|Waving at the camera|Unter den Linden with another runner" caption="Km 35 at the Gedächtniskirche, a wave around km 36, and Unter den Linden with 1 km to go" %}
+{% include gallery.html images="/images/2026-berlin-marathon/km35-gedaechtniskirche.jpg,/images/2026-berlin-marathon/km36-wave.jpg,/images/2026-berlin-marathon/km36-moyin-gel.jpg,/images/2026-berlin-marathon/km41-unter-den-linden.jpg" alts="Running past the Kaiser Wilhelm Memorial Church|Waving at the camera|Moyin, in a purple top, running alongside me with a gel|Unter den Linden with another runner" caption="Km 35 at the Gedächtniskirche, a wave just after, Moyin handing me a gel around km 36, and Unter den Linden with 1 km to go" %}
 
 ### The finish
 
@@ -150,7 +150,7 @@ A month on since race day and I've been fully focused on recovery with light exe
 
 ## Thanks
 
-It took a village. My family, my friends. Moyin and Tobi coming to cheer. My Berliners who came to keep me in good spirits, Efe, Oshomo, Hannah, Peace, Boye, SF, Abi, Amy, Omo, Funto. My training partners back in Kitchener (Bobola, Destiny). My physio, Jayde, helped me stay injury-free. My virtual accountability friends (Ope, Matteo, Sheddy). My hosts, Ike and Mofe.
+It took a village. My family, my friends. Moyin and Tobi flying in from London to cheer me. My Berliners who came to keep me in good spirits, Efe, Oshomo, Hannah, Peace, Boye, SF, Abi, Amy, Omo, Funto. My training partners back in Kitchener (Bobola, Destiny). My physio, Jayde, helped me stay injury-free. My virtual accountability friends (Ope, Matteo, Sheddy). My hosts, Ike and Mofe.
 
 ## What I learned?
 

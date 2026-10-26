@@ -1,5 +1,5 @@
 {% comment %}
-  Grid of 2-4 images. Separate paths with commas (no spaces).
+  Grid of 2-4 images (4 images lay out as 2x2). Separate paths with commas (no spaces).
   Usage:
     {% include gallery.html images="/images/a.jpg,/images/b.jpg,/images/c.jpg" caption="Optional caption for the set" %}
   Optional: alts="alt one|alt two|alt three" (pipe-separated, same order)
@@ -7,7 +7,8 @@
 {% endcomment %}
 {% assign gallery_images = include.images | split: ',' %}
 {% assign gallery_alts = include.alts | split: '|' %}
-<figure class="post-gallery cols-{{ gallery_images.size | at_most: 3 }}{% if include.ratio == 'portrait' %} ratio-portrait{% endif %}">
+{% assign gallery_cols = gallery_images.size | at_most: 3 %}{% if gallery_images.size == 4 %}{% assign gallery_cols = 2 %}{% endif %}
+<figure class="post-gallery cols-{{ gallery_cols }}{% if include.ratio == 'portrait' %} ratio-portrait{% endif %}">
   <div class="gallery-grid">
     {% for img in gallery_images %}
       {% assign i = forloop.index0 %}
